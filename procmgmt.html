@@ -1,0 +1,351 @@
+<html>
+<head>
+	<title>
+		Process Management
+	</title> 
+	
+<script>
+	function exec(cmd,ta)
+	{
+		var str=document.getElementById("connection").innerHTML;
+		if(str=='Not Connected')
+		{
+			alert('Not Connected to Lab');
+		}
+		else
+		{
+			theUrl='http://localhost:8082/runCommand?cmd='+encodeURIComponent(cmd)
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+			xmlHttp.send( null );
+			var op= xmlHttp.responseText;
+			document.getElementById(ta).value=op;
+			document.getElementById(ta).style.display = 'block';
+		}
+	}
+</script>
+
+<script>
+	function loadDoc() 
+	{
+		const xhttp = new XMLHttpRequest();
+		xhttp.onload = function() {
+			document.getElementById("connection").innerHTML = this.responseText;
+		    }
+		xhttp.open("GET", 'http://localhost:8082/checkconn', true);
+		xhttp.send();
+		xhttp.onerror= function(){document.getElementById("connection").innerHTML="Not Connected"};
+	}
+	
+	setInterval(function(){
+			
+			loadDoc();},1000);
+</script>
+
+<script>
+	function toClipboard()
+	{
+		navigator.clipboard.writeText('wget https://adityamitra5102.github.io/OSLab/process_management_backend/lab_backend.sh && sudo chmod +x lab_backend.sh && ./lab_backend.sh ');
+		alert('Copied to clipboard');
+	}
+</script>
+
+<style>
+textarea{
+	display: none;
+}
+
+.lab{
+	background-color: #4CAF50;
+	border-radius: 25px;
+        color: white;
+        padding: 5px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  background-color: lightblue;
+  padding-right: 30px;
+  padding-left: 80px;
+}
+</style>
+</head>
+<body>
+
+<div>
+<button id="myBtn" class='lab' style="position:absolute; top:0; right:0;" onClick="launchlab();"> Launch lab </button>
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+    <h2>Instructions to initialize backend:</h2><br>
+A backend is needed to for using the lab. Please follow the instructions to initialize the backend.<br>
+<ul>
+<li><b>If you are on Ubuntu or a Debian based distro:</b><br>
+
+Open the terminal (Ctrl+Alt+T is a keyboard shortcut) and enter the following:<br><br>
+ wget https://adityamitra5102.github.io/OSLab/process_management_backend/lab_backend.sh && sudo chmod +x lab_backend.sh && ./lab_backend.sh <br>
+<button class='lab' onclick='toClipboard();'>Copy to clipboard</button><br>
+Enter sudo password if prompted.</li><br>
+
+<li><b>If you are on Windows 10 or 11:</b><br>
+
+If you have a Ubuntu on WSL installed directly jump to the next step. If not, install Ubuntu on WSL using the guide <a href="https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10" target="_blank">here</a>.
+Open Ubuntu on WSL and enter the following command.<br><br>
+ wget https://adityamitra5102.github.io/OSLab/process_management_backend/lab_backend.sh && sudo chmod +x lab_backend.sh && ./lab_backend.sh </br>
+<button class='lab' onclick='toClipboard();'>Copy to clipboard</button><br></li>
+ </ul>
+    </p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+<H1><center> Process Management </center></H1><br>
+<H3>Connection status: </H3><H3 id='connection'>Not Connected</H3>
+<br><br>
+<p>
+A process is the instance of a computer program that is executed by one or many threads. Processes
+have a parent-child relationship, meaning one process gives rise to another. Each process has an
+unique process ID or PID.<br>
+The types of processes are:<br>
+<ul>
+<li>Init Process – This is the first process that is started when the compter is booted. It’s PID is
+1.</li>
+<li>Parent Process – A parent process gives rise to other processes.</li>
+<li>Child Process – A child process is initiated by a parent process.</li>
+<li>Interactive Process – Also known as foreground process, it usually is interacting with the
+user and is in kernel mode.</li>
+<li>Background Process – Also known as a Daemon. It runs silently in the background.</li>
+<li>Zombie Process – This process is supposed to have been terminated by the exit system call
+but is still present on the process table.</li>
+<li>Orphan Process – This process is a child process whose parent process has been terminated
+by the exit system call.</li>
+</ul>
+</p>
+
+<H2>Reading process information</H2>
+<p>
+The ps command shows the snapshot of the current processes running on the system with their
+PIDs. Here there is a field called STAT which shows the process status.
+We will use ps -ef where the ‘e’ flag directs to show the processes started by other users too and ‘f’
+flag stands for full.
+</p>
+<div>
+	<button  class='lab' onClick="exec('ps -ef','a1');"> Run Command ps -ef </button>
+	<textarea id="a1" name="output" rows="50" cols="100" readonly></textarea>
+</div>
+<p>
+Here there is a field called STAT which shows the process status. The different forms include:<br>
+<ul>
+<li>R: Running</li>
+<li>T: Terminated</li>
+<li>S: Interruptible sleep</li>
+</ul>
+For finding a process in the list, use the grep command.
+It is to be remembered that in UNIX based operating systems, everything is treated a file or a
+directory. Including processes. Hence, another way to view all processes can be viewing the
+directory which stores the processes as files or subdirectories. (This directory is virtual and doe not
+reside on the disk). The directory is ‘/proc’ and to view the contents, we can simply run<br>
+ls -l /proc
+</p>
+<div>
+	<button  class='lab' onClick="exec('ls -l /proc','a2');"> Run Command ls -l /proc </button>
+	<textarea id="a2" name="output" rows="50" cols="100" readonly></textarea>
+</div>
+<p>
+It is to be noted that here, each process is represented as a directory and the resources it is using as
+subdirectories. Hence, you can ‘cd’ into a process and ‘ls’ the contents. Otherwise, if you have ‘tree’
+installed, you can see the directory structure of the the directory by running<br>
+tree /proc
+</p>
+<div>
+	<button class='lab' onClick="exec('tree /proc','a3');"> Run Command tree /proc </button>
+	<textarea id="a3" name="output" rows="50" cols="100" readonly></textarea>
+</div>
+<p>
+Each process directory has a file inside with the name ‘status’ that contains the current status of the
+file. To view the status of a process, run<br>
+cat /proc/&lt;PID&gt;/status
+</p>
+
+<div>
+	<div class='lab'>
+	<p>Run Command
+		<button onClick="catproc();"> cat &nbsp;</button> /proc/
+		<input type='number' id='pid' placeholder='PID' size="6"> /status
+	</p>
+	<script>
+	function catproc()
+	{
+		var cmd='cat /proc/';
+		cmd=cmd+document.getElementById("pid").value+'/status';
+		console.log(cmd)
+		exec(cmd,'a6');
+	}
+	</script>
+	</div>
+	<textarea id="a6" name="output" rows="50" cols="100" readonly></textarea>
+</div>
+
+
+
+<br>
+<h2>Signals</h2>
+<p>
+There are a lot of signals that we can send the processes. These signals are labelled with the names
+starting with SIG. For example, the SIGTERM. In linux, we can terminate a process by sending it
+the SIGTERM signal by pressing Ctrl+C key combination.<br>
+Signals:<br>
+<ul>
+<li>SIGTERM signal allows the process to clean up and close the resources it was using before
+being terminated.</li>
+<li>SIGKILL signal, on the other hand, does not give the process time to clean up the resources.
+This may result in file or resource corruption in case a resource is not closed properly</li>
+<li>SIGSTP signal puts a process in a suspended state. (Ctrl+Z key combination also sends this.)</li>
+<li>SIGCONT signal resumes a process in suspended state to running state.</li>
+</ul>
+</p>
+<br>
+<h2> Process management</h2>
+<p>
+To kill a process, we use the kill command. This sends a SIGTERM signal to the process<br>
+kill &lt;PID&gt;<br>
+However, we can use the ‘KILL’ flag to send a SIGKILL signal as well. However, this should be the
+last resort to killing a process.<br>
+kill -KILL &lt;PID&gt;<br>
+Similarly, to put a process to suspended state, we need the SIGSTP signal. This can be done by
+using the ‘TSTP’ flag with kill command.<br>
+kill -TSTP &lt;PID&gt;<br>
+To resume a suspended process, we need the SIGCONT signal. This can be done by using the
+‘CONT’ flag with kill command.<br>
+kill -CONT &lt;PID&gt;<br>
+The results of these commands can be seen by viewing the process table with ps -ef command.
+
+</p>
+<div class='lab'>
+	<p>Run Command
+		<button onClick="killcmd();"> kill &nbsp;</button>
+		<select name='flg' id='flg'>
+			<option value='none'> </option>
+			<option value='KILL'>-KILL</option>
+			<option value='TSTP'>-TSTP</option>
+			<option value='CONT'>-CONT</option>
+		</select>
+		<input type='number' id='pid' placeholder='PID' size="6">
+	</p>
+	<script>
+	function killcmd()
+	{
+		var cmd='kill ';
+		var flag=document.getElementById("flg").value;
+		if (flag != 'none')
+		{
+			cmd=cmd+'-'+flag+' '
+		}
+		cmd=cmd+document.getElementById("pid").value;
+		console.log(cmd)
+		exec(cmd,'');
+	}
+	</script>
+</div>
+<h2>Resource Monitoring</h2>
+<p>
+The command to see the system utilization in real time is the ‘top’ command.
+The ‘uptime’ command gives information about the current time, how long the machine is running,
+number of users logged in and the load average. The load average is in 1, 5 and 15 minutes interval.
+</p>
+<div>
+	<button class='lab' onClick="exec('uptime','a4');"> Run Command uptime </button>
+	<textarea id="a4" name="output" rows="2" cols="100" readonly></textarea>
+</div>
+<p>
+The ‘lsof’ command lists open files and what processes are using them.
+</p>
+<div>
+	<button class='lab' onClick="exec('lsof','a5');"> Run Command lsof </button>
+	<textarea id="a5" name="output" rows="50" cols="100" readonly></textarea>
+</div>
+
+</body>
+</html>
+
+

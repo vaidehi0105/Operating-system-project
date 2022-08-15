@@ -1,0 +1,573 @@
+<html>
+ <head>
+	 <title>
+		 Basic Linux Commands
+	 </title>
+	 
+    <style>
+   
+    #column1 {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://i.redd.it/1qh8hvu7iiyy.png");
+    background-size: 100% 100%;;
+    }
+
+    #column2 {
+    float: left;
+    width: 0%;
+    height: 100%;
+    font-family: "Lucida Console", "Courier New", monospace;
+
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+    .head2 {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .button {
+        background-color: #4CAF50;
+	   border-radius: 25px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    
+    .para{
+        font-size: 20px;
+        padding-left: 5%;
+    }
+
+    .frame{
+        width: 100%;
+        height: 50%;
+    }
+    
+    img{
+        width: 50%;    
+        border-radius: 100%;
+    }
+
+	body {
+	  overflow: hidden; /* Hide scrollbars */
+	}
+	
+	.header h3{
+    width: 330px;
+    font-size: 30px;
+    border: 2px solid black;
+    padding: 2px;
+    text-align: center;
+    background-color: rgb(8, 8, 8);
+    color: white;
+}
+
+.popup .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0, 0, 0, 0.7);
+     z-index: 1;
+     display: none;
+}
+.popup .content{
+    position: absolute; 
+    top: 60%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background: #fff;
+    width: 500px;
+    height: 280px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+font-size: 22px;
+    box-sizing: border-box;
+    	border-radius: 20px;
+}
+.popup .close-btn{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 37px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 20px;
+}
+.popup.active .overlay{
+    display: block;
+
+}
+.popup.active .content{
+transition: all 300ms ease-in-out;
+transform: translate(-50%,-50%) scale(1);
+
+}
+
+.viewtable{
+    border-spacing: 15px;
+
+}
+
+
+.red button{
+    width: 100px;
+    height: 60px;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    /* margin: 7px; */
+    background: #fff;
+
+}
+
+	
+    </style>
+ 
+<script>
+ function togglePopup1(){
+    document.getElementById("popup-1").classList.toggle("active");
+}
+function togglePopup2(){
+    document.getElementById("popup-2").classList.toggle("active");
+}
+function togglePopup3(){
+    document.getElementById("popup-3").classList.toggle("active");
+}
+function togglePopup4(){
+    document.getElementById("popup-4").classList.toggle("active");
+}
+function togglePopup5(){
+    document.getElementById("popup-5").classList.toggle("active");
+}
+function togglePopup6(){
+    document.getElementById("popup-6").classList.toggle("active");
+}
+function togglePopup7(){
+    document.getElementById("popup-7").classList.toggle("active");
+}
+function togglePopup8(){
+    document.getElementById("popup-8").classList.toggle("active");
+}
+function togglePopup9(){
+    document.getElementById("popup-9").classList.toggle("active");
+}
+function togglePopup10(){
+    document.getElementById("popup-10").classList.toggle("active");
+}
+function togglePopup11(){
+    document.getElementById("popup-11").classList.toggle("active");
+}
+function togglePopup12(){
+    document.getElementById("popup-12").classList.toggle("active");
+}
+function togglePopup13(){
+    document.getElementById("popup-13").classList.toggle("active");
+}
+function togglePopup14(){
+    document.getElementById("popup-14").classList.toggle("active");
+}
+function togglePopup15(){
+    document.getElementById("popup-15").classList.toggle("active");
+}
+function togglePopup16(){
+    document.getElementById("popup-16").classList.toggle("active");
+}
+function togglePopup17(){
+    document.getElementById("popup-17").classList.toggle("active");
+}
+
+</script>
+    
+    
+ </head>
+ <body>
+	 <div class="row">
+		 <button id="labbutton" onclick="terminalhide()" class="button" style="position: absolute; right: 10px; top: 10px; " >Launch lab</button>
+
+	 </div>
+    <div class="row">
+        <div id="column1">
+	        <div style="padding-left: 10px;">
+
+        <h1><center> ~$ Basic_Linux_Commands </center></h1>
+     
+       <table>
+        
+        <tr>
+            <td>
+                <div class="popup" id="popup-1">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup1()">&times;</div>
+        <h3>pwd</h3>
+        <p>When you first open the terminal, you are in the home directory of your user. To know which directory you are in, you can use the “pwd” command. It gives us the absolute path, which means the path that starts from the root. </p>
+         
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-2">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup2()">&times;</div>
+        <h3>Ls</h3>
+        <p>The ls command is used to list files or directories in Linux and other Unix-based operating systems. </p>
+         
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-3">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup3()">&times;</div>
+        <h1>Top</h1>
+        <p>The top (table of processes) command shows a real-time view of running processes in Linux and displays kernel-managed tasks. </p>
+         
+        </div>
+        </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="popup" id="popup-4">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup4()">&times;</div>
+        <h1>Mkdir</h1>
+        <p>The mkdir command in Linux/Unix allows users to create or make new directories. mkdir stands for “make directory.” </p>
+         
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-5">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup5()">&times;</div>
+        <h1>Rm</h1>
+        <p>rm stands for remove here. rm command is used to remove objects such as files, directories, symbolic links and so on from the file system like UNIX. </p>
+         
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-6">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup6()">&times;</div>
+        <h1>Rmdir</h1>
+        <p>rmdir command is used remove empty directories from the filesystem in Linux. The rmdir command removes each and every directory specified in the command line only if these directories are empty. 
+
+        </p>
+         
+        </div>
+        </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="popup" id="popup-7">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup7()">&times;</div>
+        <h1>Chmod</h1>
+        <p>In Unix and Unix-like operating systems, chmod is the command and system call used to change the access permissions of file system objects, sometimes known as modes. </p>
+         
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-8">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup8()">&times;</div>
+        <h1>Cp</h1>
+        <p>In computing, cp is a command in various Unix and Unix-like operating systems for copying files and directories.</p>
+         
+        
+        </div>
+        </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="popup" id="popup-9">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup9()">&times;</div>
+        <h1>cd</h1>
+        <p>The cd (“change directory”) command is used to change the current working directory in Linux and other Unix-like operating systems</p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-10">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup10()">&times;</div>
+        <h1>Cat</h1>
+        <p>The cat command is a utility command in Linux. One of its most commonly known usages is to print the content of a file onto the standard output stream. </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-11">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup10()">&times;</div>
+        <h1>Mv</h1>
+        <p>mv is a Unix command that moves one or more files or directories from one place to another. </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-12">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup12()">&times;</div>
+        <h1>Find</h1>
+        <p>In Unix-like and some other operating systems, find is a command-line utility that locates files based on some user-specified criteria and  prints the pathname of each matched object </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-13">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup13()">&times;</div>
+        <h1>Du</h1>
+        <p>The Linux “du” (Disk Usage) is a standard Unix/Linux command, used to check the information of disk usage of files and directories on a machine. </p>
+         
+        
+        </div>
+        </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="popup" id="popup-14">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup14()">&times;</div>
+        <h1>Kill</h1>
+        <p>In Linux, the kill command (located inside the /bin/kill) can be defined as a built-in command. It is used for manually terminating the processes. </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-15">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup15()">&times;</div>
+        <h1>Chown</h1>
+        <p>The command chown, an abbreviation of change owner, is used on Unix and Unix-like operating systems to change the owner of file system files, directories. </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-16">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup16()">&times;</div>
+        <h1>Tar</h1>
+        <p>The Linux "tar" stands for tape archive, is used to create Archive and extract the Archive files.  </p>
+         
+        
+        </div>
+        </div>
+            </td>
+            <td>
+                <div class="popup" id="popup-17">
+                    <div class="overlay">
+                        
+                    </div>
+                    <div class="content">
+        <div class="close-btn" onclick="togglePopup17()">&times;</div>
+        <h1>Sudo</h1>
+        <p>Sudo stands for either "substitute user do" or "super user do" and it allows you to elevate your current user account to have root privileges temporarily. This is different from “su” which is not temporary.</p>
+         
+        
+        </div>
+        </div>
+            </td>
+          
+            
+        </tr>
+    </table>
+    
+    <div class="red">
+	<center>
+        <table class="viewtable">
+            <tr>
+                
+                <td> <button onclick="togglePopup1()">pwd</button></td>
+                <td> <button onclick="togglePopup2()">Ls</button></td>
+    
+                <td> <button onclick="togglePopup3()">Top</button></td>
+                <td> <button onclick="togglePopup4()">Mkdir</button></td>
+                
+                
+                
+                
+            </tr>
+            <tr>
+                
+                <td> <button onclick="togglePopup5()">Rm</button></td>
+                <td> <button onclick="togglePopup6()">Rmdir</button></td>
+                
+                <td> <button onclick="togglePopup7()">Chmod</button></td>
+                <td> <button onclick="togglePopup8()">cp</button></td>
+                
+                
+                
+                
+            </tr>
+            
+            <tr>
+                
+                <td> <button onclick="togglePopup9()">cd</button></td>
+                <td> <button onclick="togglePopup10()">Cat</button></td>
+                
+                <td> <button onclick="togglePopup11()">Mv</button></td>
+                <td> <button onclick="togglePopup12()">Find</button></td>
+                
+                
+                
+                
+            </tr>
+            <tr >
+                <td> <button onclick="togglePopup13()">Du</button></td>
+                <td> <button onclick="togglePopup14()">Kill</button></td>
+                <td> <button onclick="togglePopup15()">Chown</button></td>
+                <td> <button onclick="togglePopup16()">Tar</button></td>
+                
+                
+                
+            </tr>
+            <tr> <td> <button onclick="togglePopup17()">Sudo</button></td></tr>
+    </table>
+    </center>
+    <h2> <center>Launch lab for testing commands. </center></h2>
+    <!-- </div> -->
+</div>
+            </div>
+            <p style="position: absolute; bottom: 2px; right: 10px;">
+            Made with ❤️ by <b>Aditya</b>, <b>Vaidehi</b>, <b>Mithisha</b>, and <b>Vivek</b>.
+            </p>
+        </div>
+        <div id="column2" style="background-color:#8c959b;">
+        <center>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" style="padding-top: 60px;"/>
+            </center>
+
+            <p style="padding-left=10px;">
+            <br>
+            <center>
+			    <b>CentOS Linux 7 (Core)</b>
+	            </center>
+	            <br>
+	            <br>
+	            Use the following credentials for logging in:<br>
+	            <br>Username: <b>useronline</b><br>
+	            Password: <b>Password123</b>
+            </p>
+        </div>
+    </div>
+    <div id="terminal" class="row" style="position: absolute; bottom: 0px; width: 100%; height: 0px">
+    	<iframe id="termframe" src="https://www.webminal.org/terminal/proxy/index/" style="width: 100%; height: 400px; background-color: #FFFFFF;"></iframe>
+
+	</div>
+
+
+	 <script>
+		 	function terminalhide() {
+ 				 var x = document.getElementById("terminal");
+  				 var x1 = document.getElementById("labbutton");
+  				 var x2 = document.getElementById("terminalframe");
+				  if (x.style.height === "400px") {
+					    x1.style.backgroundColor="#4CAF50";
+					    x1.innerText="Launch lab";
+					    document.getElementById("column2").style.width="0%";
+    					    document.getElementById("column1").style.width="100%";
+					    x.style.height = "0px";
+    					    x2.style.height = "0px";
+				  } else {
+					x1.style.backgroundColor="red";
+					    x1.innerText="Exit lab";
+					    document.getElementById("column2").style.width="25%";
+    					    document.getElementById("column1").style.width="75%";
+	
+					    x.style.height = "400px";
+					x2.style.height = "400px";
+					    
+				  }
+			}
+		 </script>
+
+ </body>
+</html>
